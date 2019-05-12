@@ -47,16 +47,6 @@ def create_qq_bot(base_uri, group_id, blacklist=None, password=None, loop=None):
                         "\]  ",
                         text_message
                     )
-                    text_message = re.sub(
-                        r"\n",
-                        " ",
-                        text_message
-                    )
-                    text_message = re.sub(
-                        r"<&?[^>]+>",
-                        "",
-                        text_message
-                    )
                     text_message = text_message.strip()
                     if text_message:
                         await receive_msg_content(text_message, message['user_id'], api_ws)
@@ -75,6 +65,16 @@ def create_qq_bot(base_uri, group_id, blacklist=None, password=None, loop=None):
             author = resp['data']['card']
             if not author:
                 author = resp['data']['nickname']
+            author = re.sub(
+                r"\n",
+                " ",
+                author
+            )
+            author = re.sub(
+                 r"<&?[^>]+>",
+                 "",
+                 author
+            )
             final_msg = '[{author}] {msg}'.format(author=author, msg=html.unescape(text_message))
             await receive_queue.put(final_msg)
 
