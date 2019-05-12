@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  # richardchien/cqhttp
+  cqhttp:
+    image: richardchien/cqhttp:latest
+    env_file: .env
+    #environment:
+    #  - VNC_PASSWD=123123
+    #  - COOLQ_ACCOUNT=2624940100
+    ports:
+      - 127.0.0.1:5700:5700
+      - 127.0.0.1:6700:6700
+      - 9001:9000
+    volumes:
+      - ./coolq:/home/user/coolq'

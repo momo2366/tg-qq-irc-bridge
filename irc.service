@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/bin/python3 bridge.py
+WorkingDirectory=/root/bot/tg-qq-irc-bridge
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=root
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
