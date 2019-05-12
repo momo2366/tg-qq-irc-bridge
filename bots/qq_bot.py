@@ -38,8 +38,23 @@ def create_qq_bot(base_uri, group_id, blacklist=None, password=None, loop=None):
                         text_message
                     )
                     text_message = re.sub(
-                        r"\[CQ:image,file=\w+\.gif,url=[^\]]+\]",
+                        r"CQ:image,file=\w+.+,url=",
                         " ",
+                        text_message
+                    )
+                    text_message = re.sub(
+                        r"\]",
+                        "\]  ",
+                        text_message
+                    )
+                    text_message = re.sub(
+                        r"\n",
+                        " ",
+                        text_message
+                    )
+                    text_message = re.sub(
+                        r"<&?[^>]+>",
+                        "",
                         text_message
                     )
                     text_message = text_message.strip()
